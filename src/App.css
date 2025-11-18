@@ -143,6 +143,11 @@ header img {
 
 .basket-item {
   display: flex;
+  justify-content: space-between;
+}
+
+.basket-item-left {
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 10px;
@@ -190,7 +195,31 @@ header img {
   justify-content: flex-start;
 }
 
+.item-price {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.subtotal,
+.delivery-fee,
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
 .basket > .total {
   font-weight: bold;
   font-size: 20px;
+}
+
+.empty-basket-notif {
+  color: gray;
+  font-size: 22px;
+  text-align: center;
+  padding: 50px;
+}
+
+.basket .empty-button {
+  background-color: lightgray;
+  color: gray;
 }
