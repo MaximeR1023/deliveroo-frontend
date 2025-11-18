@@ -1,6 +1,6 @@
 import Meal from "./Meal";
 
-const FoodCategory = ({ category, meals }) => {
+const FoodCategory = ({ category, meals, basket, setBasket }) => {
   return (
     <section>
       <h2>{category}</h2>
@@ -13,6 +13,9 @@ const FoodCategory = ({ category, meals }) => {
               price={element.price}
               popular={element.popular}
               picture={element.picture}
+              basket={basket}
+              setBasket={setBasket}
+              key={index}
             />
           );
         })}

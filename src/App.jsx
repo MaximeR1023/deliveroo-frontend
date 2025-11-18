@@ -3,11 +3,13 @@ import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
 import BusinessDesc from "./components/BusinessDesc";
-import FoodCategory from "./components/foodCategory";
+import FoodCategory from "./components/FoodCategory";
+import Basket from "./components/Basket";
 
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [basket, setBasket] = useState([]);
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -20,7 +22,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [basket]);
 
   return isLoading ? (
     <span>Chargement...</span>
@@ -34,16 +36,21 @@ function App() {
       />
       <article className="menu">
         <div className="container">
-          {data.categories.map((element, index) => {
-            if (element.meals.length > 0)
-              return (
-                <FoodCategory
-                  category={element.name}
-                  meals={element.meals}
-                  key={index}
-                />
-              );
-          })}
+          <article className="menu-content">
+            {data.categories.map((element, index) => {
+              if (element.meals.length > 0)
+                return (
+                  <FoodCategory
+                    category={element.name}
+                    meals={element.meals}
+                    basket={basket}
+                    setBasket={setBasket}
+                    key={index}
+                  />
+                );
+            })}
+          </article>
+          <Basket basket={basket} setBasket={setBasket} />
         </div>
       </article>
     </>
